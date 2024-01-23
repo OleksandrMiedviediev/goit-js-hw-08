@@ -47,10 +47,16 @@ body {
 .gallery{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
 }
+
 .gallery-item img{
   width: 360px;
-  height: 300px;
+  height: 200px;
+}
 
+.gallery-item img:hover {
+  width: 376px;
+  height: 208px;
 }
