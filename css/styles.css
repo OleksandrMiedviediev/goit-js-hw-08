@@ -57,6 +57,5 @@ body {
 }
 
 .gallery-item img:hover {
-  width: 376px;
-  height: 208px;
+  transform: scale(1.0444);
 }
