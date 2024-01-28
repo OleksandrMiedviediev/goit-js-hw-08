@@ -64,7 +64,8 @@ const images = [
   },
 ];
 const galleryContainer = document.querySelector('.gallery');
-
+let isModalOpen = false;
+let lightboxInstance = null;
 const galleryMarkup = images
   .map(
     ({ preview, original, description }) => `
@@ -90,6 +91,24 @@ galleryContainer.addEventListener('click', e => {
   if (target.classList.contains('gallery-image')) {
     const largeImageSrc = target.dataset.source;
     console.log('Посилання на велике зображення:', largeImageSrc);
-    // Додайте вашу логіку для відкриття модального вікна або великого зображення тут
+    lightboxInstance = basicLightbox.create(
+      `<img src="${largeImageSrc}" alt="${target.alt}"  /> `,
+      {
+        onShow: () => {
+          isModalOpen = true;
+        },
+        onClose: () => {
+          isModalOpen = false;
+        },
+      },
+    );
+
+    lightboxInstance.show();
   }
 });
+function handleKeyDown(event) {
+  if (event.key === 'Escape' && isModalOpen && lightboxInstance) {
+    lightboxInstance.close();
+  }
+}
+document.addEventListener('keydown', handleKeyDown);
