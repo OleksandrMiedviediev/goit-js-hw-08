@@ -107,7 +107,12 @@ galleryContainer.addEventListener('click', e => {
   }
 });
 function handleKeyDown(event) {
-  if (event.key === 'Escape' && isModalOpen && lightboxInstance) {
+  if (
+    event.key === 'Escape' &&
+    isModalOpen &&
+    lightboxInstance &&
+    lightboxInstance.visible()
+  ) {
     lightboxInstance.close();
   }
 }
